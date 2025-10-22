@@ -1,0 +1,85 @@
+import pygame #brings in the pygame module
+pygame.init() #sets up pygame so it's ready to work
+screen = pygame.display.set_mode((800,800)) #create a game screen
+
+font = pygame.font.Font(None, 80) 
+#game variables
+py = 400 #paddle1 y position
+p2y = 400 #paddle2 y position
+bx = 200 #ball x position
+by = 200 #ball y position
+bVx = .3 #ball x velocity
+bVy = .3 #ball y velocity
+p2Score = 0
+p1Score = 0
+running = True #handles game loop
+
+while running: #GAME LOOP###################################################
+
+    #input section--------------------------------------------
+    for event in pygame.event.get(): #check events (like closing window)
+        if event.type==pygame.QUIT:
+            running = False
+            
+    keys = pygame.key.get_pressed() #keyboard state
+    if keys[pygame.K_w]:
+        py -= 1
+    if keys[pygame.K_s]:
+        py += 1
+    
+    keys = pygame.key.get_pressed() #keyboard state
+    if keys[pygame.K_a]:
+        p2y -= 1
+    if keys[pygame.K_d]:
+        p2y += 1
+        
+    #physics section---------------------------------------
+    if py < 0: #if you hit the top
+        py = 0 #stop moving!
+    if py > 700: #if you hit the bottom
+        py = 700 #stop moving!
+            
+    if p2y < 0: #if you hit the top
+        p2y = 0 #stop moving!
+    if p2y > 700: #if you hit the bottom
+        p2y = 700 #stop moving!
+    
+    if bx < 0: #if the ball hits the left wall
+        p2Score +=1 #increase score
+        bx = 200 #reset ball position
+    
+    bx += bVx #MAKES BALL GO
+    
+    by += bVy
+    if by <0 or by>770: #check if you hit the top or bottom
+        bVy*=-1 #if it does, flip the direction
+    
+    if bx > 770: #if the ball hits the right wall
+        p1Score +=1
+        bx = 200
+
+    
+    if bVx < 0 and bx+30 >= 40 and bx <= 60 and by+30 >= py and by <= py+120:
+        bVx *= -1
+        bx = 60
+        
+        
+    if bVx > 0 and bx <= 760 and bx+30 >= 740 and by+30 >= p2y and by <= p2y+120:
+        bVx *= -1
+        bx = 740-30
+            
+    #render section----------------------------------------
+    screen.fill((0,0,0)) #fill the screen black
+    pygame.draw.rect(screen,(255,255,255),(40, py, 20, 120)) #left paddle
+    pygame.draw.rect(screen,(255,255,255),(740, p2y, 20, 120)) #right paddle
+    pygame.draw.line(screen,(0,255,0),(400,0),(400,800))
+    pygame.draw.line(screen,(0,255,0),(400,0),(400,800))
+    pygame.draw.rect(screen,(255,255,255),(bx, by, 30, 30)) #ball
+    t1 = font.render(str(p1Score), True, (255,255,255))
+    t2 = font.render(str(p2Score), True, (255,255,255))
+    screen.blit(t1, (320, 20))
+    screen.blit(t2, (460, 20))
+
+    pygame.display.flip() #update the screen
+        
+pygame.quit() #kill program
