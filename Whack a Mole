@@ -1,0 +1,120 @@
+import pygame
+import random
+pygame.init()  
+screen = pygame.display.set_mode((800, 800))  # creates game screen
+pygame.display.set_caption("Whack-A-Mole!")
+clock = pygame.time.Clock() #set up clock
+hit = pygame.mixer.Sound("hit.mp3")#did
+miss = pygame.mixer.Sound("miss.mp3")#did
+pygame.mixer.music.load("music.mp3")#find
+pygame.mixer.music.set_volume(0.4)
+pygame.mixer.music.play(-1)
+#game variables
+circx = random.randrange(100, 700)
+circy = random.randrange(100, 700)
+circ2x = random.randrange(100, 700)
+circ2y = random.randrange(100, 700)
+rectx = random.randrange(100, 700)
+recty = random.randrange(100, 700)
+drawn = True
+red = (200,0 ,10) and random.randrange (20, 250)
+green = (10, 200, 0) and random.randrange (20, 250)
+blue = (10, 10, 175) and random.randrange (20, 250)#erase the and statement and whatever comes before it if  not needed
+black = (0, 0, 0) 
+white = (255, 255, 255)
+ticker = 0
+score = 0
+outline = False
+outline2 = False
+outline3 = False
+font = pygame.font.SysFont(None, 48) #load default font
+running = True
+while running: #game loop ################
+    
+#input section------------------------
+    clock.tick(60)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+            
+    if event.type == pygame.MOUSEBUTTONDOWN and drawn: #check if mouse clicked AND circle is drawn
+        mx, my = pygame.mouse.get_pos()#get and store mouse position
+        
+        #use distance formula to check if we've clicked inside the circle:
+        if(mx-circx)**2 + (my-circy)**2 <=50**2: #check if the first circle is clicked
+            if outline == False: #only add score once
+                score+=1
+                print(score)
+                hit.play()
+                print("FIRST CIRCLE CLICKED")
+            ticker = 0 #reset ticker to 0
+            outline= True
+        
+        if(mx-circ2x)**2 + (my-circ2y)**2 <=50**2: #check if the second circle is clicked
+            if outline2 == False: #only add score once
+                score+=1
+                print(score)
+                hit.play()
+                print("SECOND CIRCLE CLICKED")
+            ticker = 0 #reset ticker to 0
+            outline2 = True
+            
+        if(mx-rectx)**2 + (my-recty)**2 <=50**2: #check if the second circle is clicked
+            if outline3 == False: #only add score once
+                score-=1
+                print(score)
+                miss.play()
+                print("MISS")
+            ticker = 0 #reset ticker to 0
+            outline3 = True
+        
+        else:
+            miss.play()
+        
+    #update section
+    ticker+=1
+    #print(ticker) #for testing purposes can delete later)
+    if drawn and ticker > 80:
+        drawn = False
+        outline = False
+        outline2 = False #MO ADDED THIS
+        outline3 = False
+        ticker = 0
+        circx = random.randrange(100, 700)
+        circy = random.randrange(100, 700)
+        circ2x = random.randrange(100, 700)
+        circ2y = random.randrange(100, 700)
+        rectx = random.randrange(100, 700)
+        recty = random.randrange(100, 700)
+        black = (0, 0, 0)
+        white = (255, 255, 255)
+        red = random.randrange(20, 250)
+        green = random.randrange(20, 250)
+        blue = random.randrange(20, 250)
+        
+    elif drawn == False and ticker > 10:
+        drawn = True
+        ticker = 0
+    
+            
+    # draw section--------------------
+    screen. fill((20,20,20))
+    score_text = font.render("Score: " + str(score), True, (255,255,255))
+    screen.blit(score_text, (20, 20))
+    
+    #render section----------------
+    if drawn:
+        pygame.draw.circle(screen, (red, green, blue), (circx, circy), 50)
+        pygame.draw.circle(screen, (red, green, blue), (circ2x, circ2y), 50)
+        pygame.draw.rect(screen, (255, 255, 255), ((rectx, recty, 50, 50)))
+        pygame.draw.rect(screen, (128, 128, 128), ((rectx, recty, 50, 50)))
+    if outline:
+        pygame.draw.circle(screen, (255,255,255), (circx, circy), 50, 3)
+    if outline2: #MO ADDED THIS LINE
+        pygame.draw.circle(screen, (255,255,255), (circ2x, circ2y), 50, 3)
+    if outline3: #MO ADDED THIS LINE
+        pygame.draw.rect(screen, (255,255,255), ((rectx, recty, 50, 50)))
+                         
+    
+    pygame.display.flip()#stays at the second to last place
+pygame.quit()
