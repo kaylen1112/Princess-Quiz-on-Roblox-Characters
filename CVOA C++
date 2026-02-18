@@ -1,0 +1,259 @@
+#include<iostream> //needed for cin, cout, endl
+using namespace std; //we don't need std:: in front of cout, cout, endl
+
+int main() { // starting point of program
+
+	//game variables
+	int page = 1; // need to intilize variable type in c++ (int = one whole num, char = one ltter, str = string)
+	int choice = 0; //user input
+
+	cout << "=========================================" << endl;
+	cout << "          Escape from The Trenches!       " << endl;
+	cout << "=========================================" << endl;
+	//implement 4 endings, and 10 additional pages besides the endings
+	while (page != 0) {
+
+		cout << "Current page" << page << endl;
+
+		switch (page) {//beginning of switch
+
+		case 1:
+			cout << "You awake in a disolute island, it's eerie and the strong tide feels ominous." << endl;
+			cout << "You try to stand up and asess your foreign surroundings, although its of no use when your legs are bound together by rope" << endl;
+			cout << endl;
+			cout << "To crawl towards the sand and search for a sharp object, turn to page 2" << endl;
+			cout << "To bear with it and seek shelter before nightfall, turn to page 4" << endl;
+
+
+			cin >> choice;
+			if (choice == 2)//use curly brackets if your if/for/while has more than one line
+				page = 2;
+			else if (choice == 4)
+				page = 4;
+			else
+				cout << "Not an option." << endl;
+			break; //breaks out of the switch
+
+		case 2:
+			cout << "You begrudgindly use your hands to drag your body towards the sand, with great exertion and upper body strength you arrive in the sand near the shore. You spot a large seashell with a sharp end." << endl;
+			cout << endl;
+			cout << "To figure out what you make of your possible key to escape, turn to page 3" << endl;
+
+			cin >> choice;
+			if (choice == 3)//use curly brackets if your if/for/while has more than one line
+				page = 3;
+			else
+				cout << "Not an option." << endl;
+			break; //breaks out of the switch
+
+		case 3:
+			cout << "You grab the shell and rigoursly attempt to break the thick rope bounding your ankles together. After plenty of effort you create a tear that loosens up the rope. You slide your feet out of the rope at bliss with your returned mobility." << endl;
+			cout << "What should you make of your odyssey now?" << endl;
+			cout << endl;
+			cout << "To gather materials to craft supplies turn to page 6" << endl;
+			cout << "To attempt to challenge the treachorous water and escape, turn to page 7" << endl;
+
+
+			cin >> choice;
+			if (choice == 6)//use curly brackets if your if/for/while has more than one line
+				page = 6;
+			else if (choice == 7)
+				page = 7;
+			else
+				cout << "Not an option." << endl;
+			break; //breaks out of the switch
+
+
+
+		case 4:
+			cout << "You chose to ignore the constraints on your ankles and hastily crawl further into the abyss of the jungle, making slow progress, though eventually you spot two openings that appear to offer potential shelther for the night." << endl;
+			cout << "The northbound path is covered in vines, though you faintly see a promising cave beyond the thick vines." << endl;
+			cout << "The southbound path has a dirt trail that signifies traces of human activity, possibly encounerting a formidable home!" << endl;
+			cout << endl;
+			cout << "To go northbound turn to page 5, to go southbound turn to page 16" << endl;
+
+			cin >> choice;
+			if (choice == 5)//use curly brackets if your if/for/while has more than one line
+				page = 5;
+			else if (choice == 16)
+				page = 16;
+			else
+				cout << "Not an option." << endl;
+			break; //breaks out of the switch
+
+		case 5:
+			cout << "You hastily crawl towards the thick vines, tearing each individual vine down with your free hand. By the time you've successully bypassed the intracate vines, nightfall has already enevopled the small island. Should you continue forward and possibly enter the cave or remain still and sleep below the discarded pile of vines." << endl;
+			cout << endl;
+			cout << "To trek forward and possibly seek the safety of the cave turn to page 11, or to lie under the vines and pray for safety all night, turn to page 12." << endl;
+
+
+			cin >> choice;
+			if (choice == 11)//use curly brackets if your if/for/while has more than one line
+				page = 11;
+			else if (choice == 12)
+				page = 12;
+			else
+				cout << "Not an option." << endl;
+			break; //breaks out of the switch
+
+		case 16:
+			cout << "Tiredly you follow the rigid dirt path down towards more trees and bushes. Midway through the path you finally spot a cottage residing at the edge of the island. A light appears to be turn on in one room but your in desperate need for shelther." << endl;
+
+			cout << endl;
+			cout << "Continue to page 10" << endl;
+
+
+			cin >> choice;
+			if (choice == 10)//use curly brackets if your if/for/while has more than one line
+				page = 10;
+			else
+				cout << "Not an option." << endl;
+			break; //breaks out of the switch
+
+		case 12:
+			cout << "Oh no! You never made it to the morning, the vines had discreet mythical powers that feasted on your vulnerable soul." << endl;
+			cout << endl;
+			cout << "Better luck next time!" << endl;
+
+			page = 0; 
+			break;//breaks out of the switch
+
+		case 11:
+			cout << "By the time you locate the cave and enter your beyond exhausted passing out instantly, when the morning comes you assess the deep abyss of the dark cave." << endl;
+			cout << endl;
+			cout << "Do you wish to explore the grand expanse of the cave or return back to the dirt trail?" << endl;
+			cout << "To explore the cave, turn to page 13. To return to the dirt trail, turn to page 16" << endl;
+
+
+			cin >> choice;
+			if (choice == 13)//use curly brackets if your if/for/while has more than one line
+				page = 13;
+			else if (choice == 16)
+				page = 16;
+			else
+				cout << "Not an option." << endl;
+			break; //breaks out of the switch
+
+		case 13:
+			cout << "With no sense of direction because of the darkness that encapsulates every crevice of the cave. You quickly regret your decision to explore the cave. Your regrets prove to be valid as you mistep and fall down what feels like an endless tunnel. You fiercely collide with the hard ground and instantly lose your conciousness." << endl;
+			cout << "Unfortunately the cave didn't have promising prospects. At least you tried." << endl;
+			cout << endl;
+			cout << "Your journey has officially ended, better luck next time!" << endl;
+
+			page = 0;
+			break;//breaks out of the switch
+
+		case 10:
+			cout << "With scathes trailing your hands and wrists you crawl up the wood staircase of the cottage. Earnestly hoping for some sort of immunity or support" << endl;
+			cout << "Before you pry open the door, it opens abruptly. You look up for the culprit and encounter a pirate viciously staring down at you." << endl;
+			cout << endl;
+			cout << "To cower in fear, turn to page 15" << endl;
+			cout << "To fight the pirate and possibly gain access to the cottage, turn to page 14" << endl;
+
+
+			cin >> choice;
+			if (choice == 15)//use curly brackets if your if/for/while has more than one line
+				page = 15;
+			else if (choice == 14)
+				page = 14;
+			else
+				cout << "Not an option." << endl;
+			break; //breaks out of the switch
+
+		case 15:
+			cout << "The pirate sympathizes with your evident restlessness, he gently reaches down and moves your hands away" << endl;
+			cout << "The pirate intoduces himself as, Chuck. Noticing his supposed hospitality, you quietly introduce yourself as well" << endl;
+			cout << "Chuck nods acknowledging your intoduction. Without a word he leans down and unwravels the ropes at your ankles. Once your free he extends an arm out to you and graciously invites you into his home" << endl;
+			cout << "You assume he has benevolent intentions given that he helped you out of your predicament and even offered you food. After finishing your fufilling meal Chuck says \"From what I've gathered your stranded, well lucky for you I'm sailing out of here in 10 days time. I suppose I can sail you back home if you wish. Until then we'll further establish this very home.\"" << endl;
+			cout << endl;
+			cout << "You nod, sincerely thanking the wholesome man for his support." << endl;
+			cout << "Congragulations you've found security and have successfully won the game!" << endl;
+	
+			page = 0;
+			break;//breaks out of the switch
+
+
+
+		case 6:
+			cout << "You venture around the sand and accumalate a pile of materials, including: 10 tree logs, vines, rocks, seashells, sticks, and leafs" << endl;
+			cout << "The materials have the potential to produce an optimal home or possibly a stable boat." << endl;
+			cout << endl;
+			cout << "Should you bound yourself to the island and create a home or attempt to craft a boat and challenge the treachorous shores." << endl;
+			cout << "To build yourself a home, turn to page 8. To craft a boat, turn to page 9." << endl;
+
+
+			cin >> choice;
+			if (choice == 9)//use curly brackets if your if/for/while has more than one line
+				page = 9;
+			else if (choice == 8)
+				page = 8;
+			else
+				cout << "Not an option." << endl;
+			break; //breaks out of the switch
+
+		case 7:
+			cout << "You enter the scathy waters and shiver at the intruding cold, abruptly you feel the searing pain of sharp teeth clamping down on your leg. You scream out in pain, looking down for the culprit and spotting a great white shark before everything goes void and black." << endl;
+			cout << "You try to stand up and asess your foreign surroundings, although its of no use when your legs are bound together by rope" << endl;
+			cout << endl;
+			cout << "Unfortunately the sharks residing in the water ended your journey." << endl;
+			cout << "Better luck next time!" << endl;
+
+			page = 0;
+			break;//breaks out of the switch
+
+		case 9:
+			cout << "You hastily construct a boat, making it as sturdy as your materials permitted. You waste not time setting up the boat and sailing out to sea in hopes of escape." << endl;
+			cout << "The first few hours of your trip were running smoothly until the waves started clashing aggresively, unstablizing the baot. You hang on for dear life, but to no avail the boat flips over and takes you with it!" << endl;
+			cout << endl;
+			cout << "Things took a drastic downturn and you've ended up stranded at sea" << endl;
+			cout << "Unfortunately your journey concludes here. Better luck next time!" << endl;
+
+			page = 0;
+			break;//breaks out of the switch
+
+
+		case 8:
+			cout << "You scrupolousy construct a home, utilzing all your materials optimally. As a result, you've managed to create a safe insulated space that you now call home" << endl;
+			cout << "Perhaps not the sweet escape you anticpated, although at least your safe and sound." << endl;
+			cout << endl;
+			cout << "Congragulations on creating your own territory!" << endl;
+			cout << "You have won the alternative escape of the tides!" << endl;
+
+			page = 0;
+			break;//breaks out of the switch
+
+		case 14:
+			cout << "You launch yourself at the man, throwing hits ruthlessly at him. At the sudden threat the pirate reveals his sharp sword lethally slashing you with it. " << endl;
+			cout << "Maybe be less aggressive next time?" << endl;
+			cout << endl;
+			cout << "Nonetheless congrats on your progress." << endl;
+			cout << "Unfortunately your journey has ended at the hands of the provoked pirate. Better luck next time!" << endl;
+
+
+			page = 0;
+			break;//breaks out of the switch
+
+
+
+
+
+
+
+
+
+
+
+
+
+		}//end of switch
+
+
+
+
+
+	}//end of game loop
+
+
+
+
+}//end of main
