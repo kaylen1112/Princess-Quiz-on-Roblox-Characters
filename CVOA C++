@@ -18,7 +18,7 @@ int main() { // starting point of program
 		switch (page) {//beginning of switch
 
 		case 1:
-			cout << "You awake in a disolute island, it's eerie and the strong tide feels ominous." << endl;
+			cout << "You awake in a desolate island, it's eerie and the strong tide feels ominous." << endl;
 			cout << "You try to stand up and asess your foreign surroundings, although its of no use when your legs are bound together by rope" << endl;
 			cout << endl;
 			cout << "To crawl towards the sand and search for a sharp object, turn to page 2" << endl;
